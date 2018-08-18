@@ -72,13 +72,14 @@ import java.util.Date;
  * available in the buffer. This can be achieved using two
  * {@link Condition} instances.
  * <pre>
+ * 模拟队列
  * class BoundedBuffer {
  *   <b>final Lock lock = new ReentrantLock();</b>
  *   final Condition notFull  = <b>lock.newCondition(); </b>
  *   final Condition notEmpty = <b>lock.newCondition(); </b>
  *
  *   final Object[] items = new Object[100];
- *   int putptr, takeptr, count;
+ *   int putptr 下次队列放的下标, takeptr 下次队列获取下标, count 队列总数;
  *
  *   public void put(Object x) throws InterruptedException {
  *     <b>lock.lock();
